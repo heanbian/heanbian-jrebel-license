@@ -17,7 +17,7 @@ java -jar heanbian-jrebel-license-1.0-SNAPSHOT-jar-with-dependencies.jar -p 7881
 
 Hello, This is a JRebel & JetBrains License Server !
 
-License Server started at ``https://jrebel.heanbian.com``
+License Server started at [https://jrebel.heanbian.com](https://jrebel.heanbian.com)
 
 JetBrains Activation address: ``https://jrebel.heanbian.com/``
 
@@ -27,4 +27,4 @@ JRebel 2018.1 and later version Activation address: ``https://jrebel.heanbian.co
 
 ## 源自
 
-``https://github.com/Byron4j/JrebelLicenseServerforJava``
+[https://github.com/Byron4j/JrebelLicenseServerforJava](https://github.com/Byron4j/JrebelLicenseServerforJava)
