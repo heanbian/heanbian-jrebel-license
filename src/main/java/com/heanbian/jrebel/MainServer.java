@@ -274,8 +274,10 @@ public class MainServer extends AbstractHandler {
 		html.append("<p>JetBrains 许可服务器激活地址：").append(licenseUrl).append("</p>");  
 		html.append("<p>JetBrains 激活地址是：<span style='color:red'>").append(licenseUrl).append("/</span></p>");  
 		html.append("<p>JRebel 7.1 及旧版本激活地址：<span style='color:red'>").append(licenseUrl).append("/{tokenname}</span>，以及任意邮箱地址。</p>");  
-		html.append("<p>JRebel 2018.1+ 版本激活地址：<span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>，以及任意邮箱地址。</p>");
+		html.append("<p>JRebel 2018.1+ 版本一键激活地址：<span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>，以及任意邮箱地址。</p>");
 
+		html.append("<hr/>");  
+		html.append("<p>GitHub 地址：<span style='color:red'>https://github.com/heanbian/heanbian-jrebel-license</span></p>");  
 		response.getWriter().println(html);
 	}
 }
