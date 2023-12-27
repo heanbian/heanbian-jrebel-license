@@ -1,3 +1,18 @@
+
+## 编译
+
+```
+mvn clean -e package
+```
+
+## 运行
+
+默认端口 ``7881``
+
+```
+java -jar heanbian-jrebel-license-1.0-SNAPSHOT-jar-with-dependencies.jar -p 7881
+```
+
 ## 使用说明
 
 Hello, This is a JRebel & JetBrains License Server !
@@ -9,3 +24,7 @@ JetBrains Activation address: ``https://jrebel.heanbian.com/``
 JRebel 7.1 and earlier version Activation address: ``https://jrebel.heanbian.com/{tokenname}``, with any email.
 
 JRebel 2018.1 and later version Activation address: ``https://jrebel.heanbian.com/2f672307-13e8-415c-b439-49b03ef3f4fb``, with any email.
+
+## 源来自
+
+``https://github.com/Byron4j/JrebelLicenseServerforJava``
