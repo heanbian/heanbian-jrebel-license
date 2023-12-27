@@ -25,6 +25,6 @@ JRebel 7.1 and earlier version Activation address: ``https://jrebel.heanbian.com
 
 JRebel 2018.1 and later version Activation address: ``https://jrebel.heanbian.com/2f672307-13e8-415c-b439-49b03ef3f4fb``, with any email.
 
-## 源来自
+## 源自
 
 ``https://github.com/Byron4j/JrebelLicenseServerforJava``
