@@ -10,11 +10,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<logback-classic.version>1.5.5</logback-classic.version>
+		<logback-classic.version>1.5.6</logback-classic.version>
 		<slf4j-api.version>2.0.13</slf4j-api.version>
 		<json.version>20240303</json.version>
 		<commons-lang3.verion>3.14.0</commons-lang3.verion>
-		<bcprov-jdk18on.version>1.78</bcprov-jdk18on.version>
+		<bcprov-jdk18on.version>1.78.1</bcprov-jdk18on.version>
 		<jakarta.servlet-api.version>6.1.0-M2</jakarta.servlet-api.version>
 		<jetty-all.version>11.0.0.beta1</jetty-all.version>
 	</properties>
@@ -63,7 +63,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.4.1</version>
 				<configuration>
 					<archive>
 						<manifest>
