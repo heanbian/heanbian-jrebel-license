@@ -193,9 +193,9 @@ public class MainServer extends AbstractHandler {
 					<ReleaseTicketResponse>
 					    <message></message>
 					    <responseCode>OK</responseCode>
-					    <salt>${salt}</salt>
+					    <salt>%s</salt>
 					</ReleaseTicketResponse>
-					""";
+					""".formatted(salt);
 
 			var xmlSignature = RsaSign.sign(xmlContent);
 			var body = "<!-- " + xmlSignature + " -->\n" + xmlContent;
