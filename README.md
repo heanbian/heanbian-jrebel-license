@@ -5,12 +5,19 @@
 mvn clean -e package
 ```
 
+## 目录结构
+
+```
+/lib_jrebel_license
+/heanbian-jrebel-license-1.0-SNAPSHOT.jar
+```
+
 ## 运行
 
 默认端口 ``7881``
 
 ```
-java -jar heanbian-jrebel-license-1.0-SNAPSHOT-jar-with-dependencies.jar -p 7881
+java -jar heanbian-jrebel-license-1.0-SNAPSHOT.jar -p 7881
 ```
 
 ## 使用说明
