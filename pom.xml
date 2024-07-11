@@ -69,7 +69,7 @@
 						<manifest>
 							<mainClass>com.heanbian.jrebel.MainServer</mainClass>
 							<addClasspath>true</addClasspath>
-							<classpathPrefix>../lib/</classpathPrefix>
+							<classpathPrefix>../lib_jrebel/</classpathPrefix>
 						</manifest>
 					</archive>
 				</configuration>
@@ -87,7 +87,7 @@
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<outputDirectory>${project.build.directory}/lib_jrebel</outputDirectory>
 							<excludeGroupIds>com.heanbian</excludeGroupIds>
 						</configuration>
 					</execution>
