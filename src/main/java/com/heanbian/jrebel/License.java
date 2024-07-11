@@ -9,6 +9,8 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public final class License {
+	
+	private License() {}
 
 	private static final byte[] c;
 	private static final BouncyCastleProvider d;

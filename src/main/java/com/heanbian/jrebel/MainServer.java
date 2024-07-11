@@ -172,8 +172,7 @@ public class MainServer extends AbstractHandler {
 		if (clientRandomness == null || username == null || guid == null) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
 		} else {
-			var s = new JRebelSign();
-			s.json(clientRandomness, guid, offline, validFrom, validUntil);
+			var s = new JRebelSign(clientRandomness, guid, offline, validFrom, validUntil);
 			obj.put("signature", s.getSignature());
 			obj.put("company", username);
 			response.getWriter().print(obj.toString());

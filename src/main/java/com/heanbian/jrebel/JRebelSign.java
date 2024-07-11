@@ -4,17 +4,17 @@ import java.util.Arrays;
 
 public class JRebelSign {
 
-	private String signature;
+	private final String signature;
 
-	public void json(String clientRandomness, String guid, boolean offline, String validFrom, String validUntil) {
+	public JRebelSign(String clientRandomness, String guid, boolean offline, String validFrom, String validUntil) {
 		var serverRandomness = "H2ulzLlh7E0=";
 
 		var s = "";
 		if (offline) {
-			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, String.valueOf(offline), validFrom, validUntil);
+			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, Boolean.toString(offline), validFrom, validUntil);
 			s = String.join(";", arr);
 		} else {
-			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, String.valueOf(offline));
+			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, Boolean.toString(offline));
 			s = String.join(";", arr);
 		}
 

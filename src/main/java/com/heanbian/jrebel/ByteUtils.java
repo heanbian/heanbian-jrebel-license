@@ -4,6 +4,8 @@ import java.util.Base64;
 import java.util.Random;
 
 public final class ByteUtils {
+	
+	private ByteUtils() {}
 
 	private static final Random a;
 

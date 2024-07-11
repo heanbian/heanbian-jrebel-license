@@ -1,6 +1,8 @@
 package com.heanbian.jrebel;
 
 public final class Hex {
+	
+	private Hex() {}
 
 	public static String string(byte[] src) {
 		var s = new StringBuilder("");

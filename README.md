@@ -1,26 +1,35 @@
 
+#heanbian-jrebel-license
+
+> 建议购买正版许可!
+
+
+## 前提条件
+
+JDK 21
+
 ## 编译
 
 ```
 mvn clean -e package
 ```
 
-## 目录结构
+## 编译目录结构
 
 ```
-/lib_jrebel_license
-/heanbian-jrebel-license-1.0-SNAPSHOT.jar
+/target/lib_jrebel_license
+/target/heanbian-jrebel-license-1.0-SNAPSHOT.jar
 ```
 
 ## 运行
 
 默认端口 ``7881``
 
-```
-java -jar heanbian-jrebel-license-1.0-SNAPSHOT.jar -p 7881
+```bash
+nohup java -jar heanbian-jrebel-license-1.0-SNAPSHOT.jar -p 7881 &
 ```
 
-## 使用说明
+## 可用服务
 
 Hello, This is a JRebel & JetBrains License Server !
 
