@@ -54,8 +54,8 @@ public class MainServer extends AbstractHandler {
 
 		System.out.println("License Server started at http://localhost:" + port);
 		System.out.println("JetBrains Activation address was: http://localhost:" + port + "/");
-		System.out.println("JRebel 7.1 and earlier version Activation address was: http://localhost:" + port + "/{tokenname}, with any email.");
-		System.out.println("JRebel 2018.1 and later version Activation address was: http://localhost:" + port + "/{guid}(eg:http://localhost:" + port + "/" + UUID.randomUUID().toString() + "), with any email.");
+		System.out.println("JRebel 7.1 and earlier version activation address was: http://localhost:" + port + "/{tokenname}, with any email.");
+		System.out.println("JRebel 2018.1 and later version activation address was: http://localhost:" + port + "/{guid}(eg:http://localhost:" + port + "/" + UUID.randomUUID().toString() + "), with any email.");
 
 		server.join();
 	}
@@ -264,8 +264,8 @@ public class MainServer extends AbstractHandler {
 		html.append("<h1>Hello, This is a JRebel & JetBrains License Server !</h1>");  
 		html.append("<p>License Server started at ").append(licenseUrl).append("</p>");  
 		html.append("<p>JetBrains Activation address: <span style='color:red'>").append(licenseUrl).append("/</span></p>");  
-		html.append("<p>JRebel 7.1 and earlier version Activation address: <span style='color:red'>").append(licenseUrl).append("/{tokenname}</span>, with any email.</p>");  
-		html.append("<p>JRebel 2018.1 and later version Activation address: <span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>, with any email.</p>");  
+		html.append("<p>JRebel 7.1 and earlier version activation address: <span style='color:red'>").append(licenseUrl).append("/{tokenname}</span>, with any email.</p>");  
+		html.append("<p>JRebel 2018.1 and later version activation address: <span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>, with any email.</p>");  
 		  
 		html.append("<hr/>");  
 		  
