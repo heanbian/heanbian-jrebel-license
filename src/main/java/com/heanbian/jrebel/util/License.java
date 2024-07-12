@@ -1,4 +1,4 @@
-package com.heanbian.jrebel;
+package com.heanbian.jrebel.util;
 
 import java.security.GeneralSecurityException;
 import java.security.KeyFactory;
@@ -9,7 +9,7 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 public final class License {
-	
+
 	private License() {}
 
 	private static final byte[] c;

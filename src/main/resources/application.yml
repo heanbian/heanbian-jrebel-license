@@ -1,0 +1,10 @@
+server:
+  port: 7881
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  thymeleaf:
+    cache: false
+logging:
+  config: classpath:logs.xml

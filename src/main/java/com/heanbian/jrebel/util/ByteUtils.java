@@ -1,4 +1,4 @@
-package com.heanbian.jrebel;
+package com.heanbian.jrebel.util;
 
 import java.util.Base64;
 import java.util.Random;

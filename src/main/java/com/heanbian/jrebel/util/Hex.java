@@ -1,4 +1,4 @@
-package com.heanbian.jrebel;
+package com.heanbian.jrebel.util;
 
 public final class Hex {
 	
