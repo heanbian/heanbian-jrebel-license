@@ -26,14 +26,14 @@ mvn clean -e package
 默认端口 ``7881``
 
 ```bash
-nohup java -jar heanbian-jrebel-license-1.0-SNAPSHOT.jar -p 7881
+nohup java -jar heanbian-jrebel-license-1.0-SNAPSHOT.jar -p 7881 &
 ```
 
 ## 可用服务
 
 JRebel & JetBrains License Server
 
-JetBrains 激活地址是： ``https://jrebel.heanbian.com``
+JetBrains 激活地址是： [https://jrebel.heanbian.com](https://jrebel.heanbian.com)
 
 JRebel 激活地址是： ``https://jrebel.heanbian.com/2f672307-13e8-415c-b439-49b03ef3f4fb``
 
