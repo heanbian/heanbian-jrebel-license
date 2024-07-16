@@ -5,36 +5,37 @@
 <title>JRebel & JetBrains License Server</title>
 <link href="https://cdnimg.heanbian.com/favicon.ico" type="image/x-icon" rel="icon">
 <style>
-	.content {
-		width: 750px;
-		margin: 100px auto;
-	}
+.content {
+	width: 750px;
+	margin: 100px auto;
+}
 
-	html,
-	body,
-	div,
-	p,
-	h3 {
-		color: #000000;
-		background-color: #f5f5f5;
-		font-size: 14px;
-		line-height: 1.5;
-		margin: 0;
-		padding: 0;
-		font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
-	}
+html, body, div, p, h3 {
+	color: #000000;
+	background-color: #f5f5f5;
+	font-size: 14px;
+	line-height: 1.5;
+	margin: 0;
+	padding: 0;
+	font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+		Cantarell, Noto Sans, sans-serif;
+}
 
-	.mt5 {
-		margin-top: 5px;
-	}
+.mt5 {
+	margin-top: 5px;
+}
 
-	.mt20 {
-		margin-top: 20px;
-	}
+.mt20 {
+	margin-top: 20px;
+}
 
-	.mt30 {
-		margin-top: 30px;
-	}
+.mt30 {
+	margin-top: 30px;
+}
+
+a {
+	color: #066ef4;
+}
 </style>
 </head>
 <body>
@@ -42,9 +43,23 @@
 	<h3>JRebel & JetBrains License Server</h3>
 
 	<p class="mt20">JetBrains 激活地址是：[[${license_server}]]</p>
-	<p class="mt5">JRebel 激活地址是：[[${license_url}]]</p>
+	<p class="mt5">JRebel 激活地址是：[[${license_url}]] <a href="javascript:copyText();">复制</a> <a href="/">刷新</a></p>
 
 	<p class="mt30">GitHub 地址：<a href="https://github.com/heanbian/heanbian-jrebel-license">https://github.com/heanbian/heanbian-jrebel-license</a></p>
 </div>
+<script>
+	var _text = "[[${license_url}]]";
+	function copyText() {
+		if (navigator.clipboard) {
+			navigator.clipboard.writeText(_text).then(() => {
+				alert("已复制到剪贴板");
+			}).catch((error) => {
+				alert("复制文本失败：" + error);
+			})
+		} else {
+			alert("您的浏览器不支持复制");
+		}
+	}
+</script>
 </body>
 </html>

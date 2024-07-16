@@ -7,14 +7,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.heanbian.jrebel.util.RsaSign;
 
-import reactor.core.publisher.Mono;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/rpc")
 public class RpcController {
 
 	@PostMapping(value = "/ping.action", produces = MediaType.TEXT_HTML_VALUE)
-	public Mono<String> ping(String salt) {
+	public String ping(HttpServletRequest request) {
+		var salt = request.getParameter("salt");
+
 		var xmlContent = """
 				   <PingResponse>
 				       <message></message>
@@ -25,11 +27,14 @@ public class RpcController {
 
 		var xmlSignature = RsaSign.sign(xmlContent);
 		var body = "<!-- " + xmlSignature + " -->\n" + xmlContent;
-		return Mono.just(body);
+		return body;
 	}
 
 	@PostMapping(value = "obtainTicket.action", produces = MediaType.TEXT_HTML_VALUE)
-	public Mono<String> obtainTicket(String salt, String userName) {
+	public String obtainTicket(HttpServletRequest request) {
+		var salt = request.getParameter("salt");
+		var userName = request.getParameter("userName");
+
 		var xmlContent = """
 				   <ObtainTicketResponse>
 				       <message></message>
@@ -43,11 +48,13 @@ public class RpcController {
 
 		var xmlSignature = RsaSign.sign(xmlContent);
 		var body = "<!-- " + xmlSignature + " -->\n" + xmlContent;
-		return Mono.just(body);
+		return body;
 	}
 
 	@PostMapping(value = "releaseTicket.action", produces = MediaType.TEXT_HTML_VALUE)
-	public Mono<String> releaseTicket(String salt) {
+	public String releaseTicket(HttpServletRequest request) {
+		var salt = request.getParameter("salt");
+
 		var xmlContent = """
 				<ReleaseTicketResponse>
 				    <message></message>
@@ -58,7 +65,7 @@ public class RpcController {
 
 		var xmlSignature = RsaSign.sign(xmlContent);
 		var body = "<!-- " + xmlSignature + " -->\n" + xmlContent;
-		return Mono.just(body);
+		return body;
 	}
 
 }
