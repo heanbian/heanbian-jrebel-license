@@ -25,7 +25,8 @@ public class JRebelController {
 
 		if (offline) {
 			var clientTime = request.getParameter("clientTime");
-			long clinetTimeUntil = Long.parseLong(clientTime) + 180L * 24 * 60 * 60 * 1000;
+//			long clinetTimeUntil = Long.parseLong(clientTime) + 180L * 24 * 60 * 60 * 1000;
+			long clinetTimeUntil = System.currentTimeMillis() + 180L * 24 * 60 * 60 * 1000;
 			validFrom = clientTime;
 			validUntil = String.valueOf(clinetTimeUntil);
 		}
