@@ -6,13 +6,12 @@ public class JRebelSign {
 
 	private final String signature;
 
-	public JRebelSign(String clientRandomness, String guid, boolean offline, long validFrom, long validUntil) {
+	public JRebelSign(String clientRandomness, String guid, boolean offline, String validFrom, String validUntil) {
 		var serverRandomness = "H2ulzLlh7E0=";
 
 		var s = "";
 		if (offline) {
-			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, Boolean.toString(offline),
-					Long.toString(validFrom), Long.toString(validUntil));
+			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, Boolean.toString(offline), validFrom, validUntil);
 			s = String.join(";", arr);
 		} else {
 			var arr = Arrays.asList(clientRandomness, serverRandomness, guid, Boolean.toString(offline));

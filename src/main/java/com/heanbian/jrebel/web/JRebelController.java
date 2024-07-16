@@ -15,9 +15,9 @@ import reactor.core.publisher.Mono;
 public class JRebelController {
 
 	@PostMapping({ "/jrebel/leases", "/agent/leases" })
-	public Mono<Map<String, Object>> leases(String randomness, String username, String guid, boolean offline, long clientTime) {
-
-		long validUntil = clientTime + 180L * 24 * 60 * 60 * 1000;
+	public Mono<Map<String, Object>> leases(String randomness, String username, String guid, boolean offline, String clientTime) {
+		var validFrom = "null";
+		var validUntil = "null";
 
 		Map<String, Object> map = new HashMap<>();
 		map.put("serverVersion", "3.2.4");
@@ -37,14 +37,19 @@ public class JRebelController {
 		map.put("licenseValidFrom", 1490544001000L);
 		map.put("licenseValidUntil", 1691839999000L);
 
-		var s = new JRebelSign(randomness, guid, offline, clientTime, validUntil);
-		map.put("signature", s.getSignature());
-
 		if (offline) {
+			validFrom = clientTime;
+			validUntil = String.valueOf(Long.parseLong(clientTime) + 180L * 24 * 60 * 60 * 1000);
+
 			map.put("validFrom", clientTime);
+			map.put("validUntil", validUntil);
+		} else {
+			map.put("validFrom", validFrom);
 			map.put("validUntil", validUntil);
 		}
 
+		var s = new JRebelSign(randomness, guid, offline, clientTime, validUntil);
+		map.put("signature", s.getSignature());
 		return Mono.just(map);
 	}
 
