@@ -52,16 +52,13 @@ public class MainServer extends AbstractHandler {
 		server.setHandler(new MainServer());
 		server.start();
 
-		System.out.println("License Server started at http://localhost:" + port);
-		System.out.println("JetBrains Activation address was: http://localhost:" + port + "/");
-		System.out.println("JRebel 7.1 and earlier version activation address was: http://localhost:" + port + "/{tokenname}, with any email.");
-		System.out.println("JRebel 2018.1 and later version activation address was: http://localhost:" + port + "/{guid}(eg:http://localhost:" + port + "/" + UUID.randomUUID().toString() + "), with any email.");
-
+		System.out.println("Successfully started !");
 		server.join();
 	}
 
 	@Override
-	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
 		switch (target) {
 		case "/" -> indexHandler(target, baseRequest, request, response);
 		case "/jrebel/leases" -> jrebelLeasesHandler(target, baseRequest, request, response);
@@ -76,11 +73,12 @@ public class MainServer extends AbstractHandler {
 		}
 	}
 
-	private void jrebelValidateHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void jrebelValidateHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
-		
+
 		var json = """
 				   {
 				        "serverVersion": "3.2.4",
@@ -99,11 +97,12 @@ public class MainServer extends AbstractHandler {
 		response.getWriter().print(obj.toString());
 	}
 
-	private void jrebelLeases1Handler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void jrebelLeases1Handler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
-		
+
 		var json = """
 				    {
 				        "serverVersion": "3.2.4",
@@ -116,7 +115,7 @@ public class MainServer extends AbstractHandler {
 				    }
 				""";
 		var obj = new JSONObject(json);
-		
+
 		var username = request.getParameter("username");
 		if (username != null) {
 			obj.put("company", username);
@@ -125,11 +124,12 @@ public class MainServer extends AbstractHandler {
 
 	}
 
-	private void jrebelLeasesHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void jrebelLeasesHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("application/json; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
-		
+
 		var clientRandomness = request.getParameter("randomness");
 		var username = request.getParameter("username");
 		var guid = request.getParameter("guid");
@@ -143,7 +143,7 @@ public class MainServer extends AbstractHandler {
 			validFrom = clientTime;
 			validUntil = String.valueOf(clinetTimeUntil);
 		}
-		
+
 		var json = """
 				{
 				    "serverVersion": "3.2.4",
@@ -166,7 +166,8 @@ public class MainServer extends AbstractHandler {
 				    "licenseValidFrom": 1490544001000,
 				    "licenseValidUntil": 1691839999000
 				}
-				""".formatted(offline, validFrom, validUntil);
+				"""
+				.formatted(offline, validFrom, validUntil);
 
 		var obj = new JSONObject(json);
 		if (clientRandomness == null || username == null || guid == null) {
@@ -179,11 +180,12 @@ public class MainServer extends AbstractHandler {
 		}
 	}
 
-	private void releaseTicketHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void releaseTicketHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
-		
+
 		var salt = request.getParameter("salt");
 		if (salt == null) {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
@@ -202,11 +204,12 @@ public class MainServer extends AbstractHandler {
 		}
 	}
 
-	private void obtainTicketHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void obtainTicketHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
-		
+
 		var salt = request.getParameter("salt");
 		var username = request.getParameter("userName");
 		var prolongationPeriod = "607875500";
@@ -229,7 +232,8 @@ public class MainServer extends AbstractHandler {
 		}
 	}
 
-	private void pingHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void pingHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
@@ -251,32 +255,86 @@ public class MainServer extends AbstractHandler {
 		}
 	}
 
-	private void indexHandler(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response) throws IOException {
+	private void indexHandler(String target, Request baseRequest, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
 		response.setContentType("text/html; charset=UTF-8");
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
 
-		var licenseUrl = "https://jrebel.heanbian.com";  
-		  
-		var html = new StringBuffer("<h1>使用说明</h1>");  
-		html.append("<hr/>");  
-		  
-		html.append("<h1>Hello, This is a JRebel & JetBrains License Server !</h1>");  
-		html.append("<p>License Server started at ").append(licenseUrl).append("</p>");  
-		html.append("<p>JetBrains Activation address: <span style='color:red'>").append(licenseUrl).append("/</span></p>");  
-		html.append("<p>JRebel 7.1 and earlier version activation address: <span style='color:red'>").append(licenseUrl).append("/{tokenname}</span>, with any email.</p>");  
-		html.append("<p>JRebel 2018.1 and later version activation address: <span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>, with any email.</p>");  
-		  
-		html.append("<hr/>");  
-		  
-		html.append("<h1>嗨，此地址是 JRebel & JetBrains License Server ！</h1>");  
-		html.append("<p>JetBrains 许可服务器激活地址：").append(licenseUrl).append("</p>");  
-		html.append("<p>JetBrains 激活地址是：<span style='color:red'>").append(licenseUrl).append("/</span></p>");  
-		html.append("<p>JRebel 7.1 及旧版本激活地址：<span style='color:red'>").append(licenseUrl).append("/{tokenname}</span>，以及任意邮箱地址。</p>");  
-		html.append("<p>JRebel 2018.1+ 版本一键激活地址：<span style='color:red'>").append(licenseUrl).append("/").append(UUID.randomUUID().toString()).append("</span>，以及任意邮箱地址。</p>");
+		var licenseServer = "https://jrebel.heanbian.com";
 
-		html.append("<hr/>");  
-		html.append("<p>GitHub 地址：<span style='color:red'>https://github.com/heanbian/heanbian-jrebel-license</span></p>");  
+		var guid = UUID.randomUUID().toString();
+		var licenseUrl = licenseServer + "/" + guid;
+
+		var html = """
+				<!DOCTYPE html>
+				<html lang="zh-CN">
+				<head>
+				<meta charset="UTF-8">
+				<title>JRebel & JetBrains License Server</title>
+				<link href="https://cdnimg.heanbian.com/favicon.ico" type="image/x-icon" rel="icon">
+				<style>
+				.content {
+					width: 750px;
+					margin: 100px auto;
+				}
+
+				html, body, div, p, h3 {
+					color: #000000;
+					background-color: #f5f5f5;
+					font-size: 14px;
+					line-height: 1.5;
+					margin: 0;
+					padding: 0;
+					font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+						Cantarell, Noto Sans, sans-serif;
+				}
+
+				.mt5 {
+					margin-top: 5px;
+				}
+
+				.mt20 {
+					margin-top: 20px;
+				}
+
+				.mt30 {
+					margin-top: 30px;
+				}
+
+				a {
+					color: #066ef4;
+				}
+				</style>
+				</head>
+				<body>
+				<div class="content">
+					<h3>JRebel & JetBrains License Server</h3>
+
+					<p class="mt20">JetBrains 激活地址是：%s</p>
+					<p class="mt5">JRebel 激活地址是：%s <a href="javascript:copyText();">复制</a> <a href="/">刷新</a></p>
+
+					<p class="mt30">GitHub 地址：<a href="https://github.com/heanbian/heanbian-jrebel-license">https://github.com/heanbian/heanbian-jrebel-license</a></p>
+				</div>
+				<script>
+					var _text = "%s";
+					function copyText() {
+						if (navigator.clipboard) {
+							navigator.clipboard.writeText(_text).then(() => {
+								alert("已复制到剪贴板");
+							}).catch((error) => {
+								alert("复制文本失败：" + error);
+							})
+						} else {
+							alert("您的浏览器不支持复制");
+						}
+					}
+				</script>
+				</body>
+				</html>
+				"""
+				.formatted(licenseServer, licenseUrl, licenseUrl);
+
 		response.getWriter().println(html);
 	}
 }
