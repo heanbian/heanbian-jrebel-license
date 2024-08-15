@@ -261,8 +261,17 @@ public class MainServer extends AbstractHandler {
 		response.setStatus(HttpServletResponse.SC_OK);
 		baseRequest.setHandled(true);
 
-		var licenseServer = "https://jrebel.heanbian.com";
+		String scheme = request.getScheme();
+		int port = request.getServerPort();
+		String domain = request.getServerName();
 
+		var sb = new StringBuilder();
+		sb.append(scheme).append("://").append(domain);
+		if (port != 80 || port != 443) {
+			sb.append(':').append(port);
+		}
+
+		var licenseServer = sb.toString();
 		var guid = UUID.randomUUID().toString();
 		var licenseUrl = licenseServer + "/" + guid;
 
@@ -272,7 +281,6 @@ public class MainServer extends AbstractHandler {
 				<head>
 				<meta charset="UTF-8">
 				<title>JRebel & JetBrains License Server</title>
-				<link href="https://cdnimg.heanbian.com/favicon.ico" type="image/x-icon" rel="icon">
 				<style>
 				.content {
 					width: 750px;
